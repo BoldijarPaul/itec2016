@@ -5,6 +5,7 @@ import com.itec.order.data.models.Category;
 import com.itec.order.data.models.Product;
 import com.itec.order.data.models.ProductsResponse;
 import com.itec.order.data.persistance.CategoryRecord;
+import com.itec.order.data.persistance.FullProductRecord;
 
 import java.util.List;
 
@@ -52,8 +53,9 @@ public class CachePresenter {
             @Override
             public void onResponse(Call<ProductsResponse> call, Response<ProductsResponse> response) {
                 List<Product> products = response.body().products;
+                FullProductRecord.deleteAll(FullProductRecord.class);
                 for (Product product : products) {
-
+                    new FullProductRecord(product).save();
                 }
             }
 

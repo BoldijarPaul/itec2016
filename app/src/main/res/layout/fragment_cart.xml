@@ -4,11 +4,9 @@
              android:layout_height="match_parent"
              tools:context="com.itec.order.ui.fragments.CartFragment">
 
-    <TextView
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/cart_recycler"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_gravity="center"
-        android:gravity="center"
-        android:text="Empty cart"/>
+        android:layout_height="match_parent"/>
 
 </FrameLayout>

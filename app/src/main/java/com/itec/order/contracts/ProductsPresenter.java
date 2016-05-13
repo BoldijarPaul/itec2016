@@ -1,7 +1,7 @@
 package com.itec.order.contracts;
 
 
-import com.itec.order.data.models.Product;
+import com.itec.order.data.persistance.FullProductRecord;
 
 /**
  * Created by Paul on 5/13/2016.
@@ -12,7 +12,7 @@ public class ProductsPresenter extends Presenter<ProductsView> {
         super(view);
     }
 
-    public void loadProducts() {
-        getView().showProducts(Product.mockList(100));
+    public void loadAllProducts() {
+        getView().showProducts(FullProductRecord.listAll(FullProductRecord.class, "description asc"));
     }
 }
