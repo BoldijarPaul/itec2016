@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.dlazaro66.qrcodereaderview.QRCodeReaderView;
 import com.itec.app.R;
@@ -55,7 +56,7 @@ public class ScanFragment extends Fragment implements QRCodeReaderView.OnQRCodeR
 
     @Override
     public void onQRCodeRead(String text, PointF[] points) {
-
+        Toast.makeText(getContext(), text, Toast.LENGTH_SHORT).show();
     }
 
     @Override
