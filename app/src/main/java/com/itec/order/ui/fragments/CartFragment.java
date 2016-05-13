@@ -24,14 +24,17 @@ public class CartFragment extends Fragment {
 
     private static final int CODE_CHOOSE = 101;
 
-    public CartFragment() {
-        // Required empty public constructor
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
     }
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         inflater.inflate(R.menu.menu_cart, menu);
+        super.onCreateOptionsMenu(menu, inflater);
     }
 
     @Override
