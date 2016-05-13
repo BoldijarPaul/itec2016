@@ -4,4 +4,7 @@
     <string name="password">Password</string>
     <string name="login_button">Login</string>
     <string name="add">Add</string>
+    <string name="network_error">Network Error!</string>
+    <string name="login_error">Invalid username or password!</string>
+    <string name="login_succesful">"login succesful! "</string>
 </resources>

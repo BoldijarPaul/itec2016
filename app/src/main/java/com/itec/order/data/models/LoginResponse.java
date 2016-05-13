@@ -11,5 +11,5 @@ public class LoginResponse {
     @SerializedName("ok")
     public String ok;
     @SerializedName("user_id")
-    public String userId;
+    public int userId;
 }
