@@ -6,13 +6,14 @@ import android.content.SharedPreferences;
 
 import com.itec.app.R;
 import com.itec.order.data.IntegerPreference;
+import com.orm.SugarApp;
 
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
 
 /**
  * Created by Paul on 5/12/2016.
  */
-public class BaseApp extends Application {
+public class BaseApp extends SugarApp {
 
     private static SharedPreferences mSharedPreferences;
 

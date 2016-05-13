@@ -5,6 +5,7 @@ import android.support.annotation.IdRes;
 import android.support.v4.app.Fragment;
 
 import com.itec.app.R;
+import com.itec.order.data.service.CachePresenter;
 import com.itec.order.ui.fragments.CartFragment;
 import com.itec.order.ui.fragments.ScanFragment;
 import com.roughike.bottombar.BottomBar;
@@ -21,6 +22,7 @@ public class HomeActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+        new CachePresenter().startCaching();
         setupFragments();
         setupBottomBar(savedInstanceState);
     }
