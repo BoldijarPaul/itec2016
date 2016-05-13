@@ -7,7 +7,7 @@ import android.widget.TextView;
 
 import com.itec.app.R;
 
-import butterknife.BindView;
+import butterknife.Bind;
 import butterknife.ButterKnife;
 
 /**
@@ -15,11 +15,11 @@ import butterknife.ButterKnife;
  */
 public class ProductViewHolder extends RecyclerView.ViewHolder {
 
-    @BindView(R.id.product_title)
+    @Bind(R.id.product_title)
     TextView title;
-    @BindView(R.id.product_subtitle)
+    @Bind(R.id.product_subtitle)
     TextView subtitle;
-    @BindView(R.id.product_image)
+    @Bind(R.id.product_image)
     ImageView image;
 
     public ProductViewHolder(View itemView) {

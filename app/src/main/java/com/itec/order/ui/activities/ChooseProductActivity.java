@@ -13,12 +13,12 @@ import com.itec.order.ui.adapters.ProductsAdapter;
 
 import java.util.List;
 
-import butterknife.BindView;
+import butterknife.Bind;
 import butterknife.ButterKnife;
 
 public class ChooseProductActivity extends AppCompatActivity implements ProductsView {
 
-    @BindView(R.id.choose_product_recycler)
+    @Bind(R.id.choose_product_recycler)
     RecyclerView mRecyclerView;
 
     private ProductsAdapter mProductsAdapter;
