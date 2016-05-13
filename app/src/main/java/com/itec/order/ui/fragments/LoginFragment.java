@@ -1,6 +1,7 @@
 package com.itec.order.ui.fragments;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -14,8 +15,8 @@ import android.widget.Toast;
 import com.itec.app.R;
 import com.itec.order.contracts.LoginPresenter;
 import com.itec.order.contracts.LoginView;
-
-import org.w3c.dom.Text;
+import com.itec.order.ui.activities.HomeActivity;
+import com.itec.order.ui.app.BaseApp;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -76,6 +77,8 @@ public class LoginFragment extends Fragment implements LoginView {
 
     @Override
     public void loginSuccesful(int token) {
+        BaseApp.getToken().set(token);
+        startActivity(new Intent(getContext(), HomeActivity.class));
         Toast.makeText(getContext(), R.string.login_succesful, Toast.LENGTH_SHORT).show();
     }
 }
