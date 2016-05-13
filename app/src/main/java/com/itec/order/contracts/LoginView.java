@@ -5,6 +5,8 @@ package com.itec.order.contracts;
  */
 public interface LoginView {
     void showNetworkError();
+
     void showLoginError();
+
     void loginSuccesful(int token);
 }

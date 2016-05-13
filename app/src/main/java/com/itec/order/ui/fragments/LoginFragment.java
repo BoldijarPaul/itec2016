@@ -33,6 +33,7 @@ public class LoginFragment extends Fragment implements LoginView {
     TextView mLoginButton;
 
     private LoginPresenter mLoginPresenter;
+
     public LoginFragment() {
         // Required empty public constructor
     }
@@ -47,34 +48,34 @@ public class LoginFragment extends Fragment implements LoginView {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        ButterKnife.bind(this,view);
+        ButterKnife.bind(this, view);
         mLoginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 LoginCicked();
             }
         });
-        mLoginPresenter=new LoginPresenter(this);
+        mLoginPresenter = new LoginPresenter(this);
 
     }
 
     private void LoginCicked() {
-        mLoginPresenter.doLogin(mLoginEmail.getText().toString(),mLoginPassword.getText().toString());
+        mLoginPresenter.doLogin(mLoginEmail.getText().toString(), mLoginPassword.getText().toString());
     }
 
     @Override
     public void showNetworkError() {
-        Toast.makeText(getContext(), R.string.network_error,Toast.LENGTH_SHORT).show();
+        Toast.makeText(getContext(), R.string.network_error, Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void showLoginError() {
-        Toast.makeText(getContext(), R.string.login_error,Toast.LENGTH_SHORT).show();
+        Toast.makeText(getContext(), R.string.login_error, Toast.LENGTH_SHORT).show();
 
     }
 
     @Override
     public void loginSuccesful(int token) {
-        Toast.makeText(getContext(), R.string.login_succesful,Toast.LENGTH_SHORT).show();
+        Toast.makeText(getContext(), R.string.login_succesful, Toast.LENGTH_SHORT).show();
     }
 }

@@ -20,23 +20,23 @@ public class LoginPresenter extends Presenter<LoginView> {
 
     public LoginPresenter(LoginView view) {
         super(view);
-        mLoginService= RetrofitUtils.getRetrofit().create(LoginService.class);
+        mLoginService = RetrofitUtils.getRetrofit().create(LoginService.class);
     }
 
-    public void doLogin(String email, String password){
-        LoginBody body=new LoginBody();
-        body.email=email;
-        body.password=password;
-        Call<LoginResponse> responseCall=mLoginService.doLogin(body);
+    public void doLogin(String email, String password) {
+        LoginBody body = new LoginBody();
+        body.email = email;
+        body.password = password;
+        Call<LoginResponse> responseCall = mLoginService.doLogin(body);
 
         responseCall.enqueue(new Callback<LoginResponse>() {
             @Override
             public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
                 LoginResponse loginResponse = response.body();
 
-                if(loginResponse.status.equals("ok")){
+                if (loginResponse.status.equals("ok")) {
                     getView().loginSuccesful(loginResponse.userId);
-                }else{
+                } else {
                     getView().showLoginError();
                 }
             }
