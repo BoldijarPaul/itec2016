@@ -10,4 +10,8 @@
     <string name="scan">Scan</string>
     <string name="scan_qr_code">Scan QR code</string>
     <string name="product">Add product</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="welcome_to_instaorder">Welcome to instaOrder!\n I will be your guide today.</string>
 </resources>

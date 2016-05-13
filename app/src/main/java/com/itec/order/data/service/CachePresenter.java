@@ -2,6 +2,8 @@ package com.itec.order.data.service;
 
 import com.itec.order.data.models.CategoriesResponse;
 import com.itec.order.data.models.Category;
+import com.itec.order.data.models.Product;
+import com.itec.order.data.models.ProductsResponse;
 import com.itec.order.data.persistance.CategoryRecord;
 
 import java.util.List;
@@ -41,5 +43,25 @@ public class CachePresenter {
 
     public void startCaching() {
         loadCategories();
+        loadProducts();
     }
+
+    private void loadProducts() {
+        Call<ProductsResponse> productsResponseCall = mProductService.getProducts();
+        productsResponseCall.enqueue(new Callback<ProductsResponse>() {
+            @Override
+            public void onResponse(Call<ProductsResponse> call, Response<ProductsResponse> response) {
+                List<Product> products = response.body().products;
+                for (Product product : products) {
+
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ProductsResponse> call, Throwable t) {
+
+            }
+        });
+    }
+
 }

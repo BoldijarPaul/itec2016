@@ -4,13 +4,21 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.activities.MainActivity">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
 
-    <fragment
-        android:id="@+id/login_fragment"
-        android:name="com.itec.order.ui.fragments.LoginFragment"
+    <android.support.v4.view.ViewPager
+        android:id="@+id/main_view_pager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
+
+    <me.relex.circleindicator.CircleIndicator
+        android:id="@+id/main_indicator"
+        app:ci_drawable="@drawable/indicator_circle"
+        android:layout_width="match_parent"
+        android:layout_marginBottom="20dp"
+        android:layout_height="48dp"
+        android:layout_gravity="bottom"/>
 
 
 </FrameLayout>
