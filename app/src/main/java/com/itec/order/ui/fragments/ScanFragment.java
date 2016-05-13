@@ -1,0 +1,82 @@
+package com.itec.order.ui.fragments;
+
+
+import android.graphics.PointF;
+import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+
+import com.dlazaro66.qrcodereaderview.QRCodeReaderView;
+import com.itec.app.R;
+
+import butterknife.Bind;
+import butterknife.ButterKnife;
+
+/**
+ * A simple {@link Fragment} subclass.
+ */
+public class ScanFragment extends Fragment implements QRCodeReaderView.OnQRCodeReadListener {
+
+    @Bind(R.id.scan_qrcamera)
+    QRCodeReaderView mQRCodeReaderView;
+    @Bind(R.id.scan_button)
+    View mScanButton;
+
+    public ScanFragment() {
+        // Required empty public constructor
+    }
+
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        return inflater.inflate(R.layout.fragment_scan, container, false);
+    }
+
+    @Override
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        ButterKnife.bind(this, view);
+        mQRCodeReaderView.setOnQRCodeReadListener(this);
+        mScanButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                clickQr();
+            }
+        });
+    }
+
+    void clickQr() {
+        mQRCodeReaderView.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void onQRCodeRead(String text, PointF[] points) {
+
+    }
+
+    @Override
+    public void cameraNotFound() {
+
+    }
+
+    @Override
+    public void QRCodeNotFoundOnCamImage() {
+
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        mQRCodeReaderView.getCameraManager().startPreview();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        mQRCodeReaderView.getCameraManager().stopPreview();
+    }
+}

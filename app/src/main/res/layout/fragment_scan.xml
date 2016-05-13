@@ -1,0 +1,23 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             xmlns:tools="http://schemas.android.com/tools"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             tools:context="com.itec.order.ui.fragments.ScanFragment">
+
+    <Button
+        android:id="@+id/scan_button"
+        style="?android:attr/borderlessButtonStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="20dp"
+        android:text="@string/scan_qr_code"/>
+
+    <com.dlazaro66.qrcodereaderview.QRCodeReaderView
+        android:id="@+id/scan_qrcamera"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="80dp"
+        android:visibility="gone"/>
+
+</FrameLayout>

@@ -43,6 +43,10 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductViewHolder> {
         holder.subtitle.setText("Category id: " + product.categoryId);
     }
 
+    public Product getProduct(int position) {
+        return mProducts.get(position);
+    }
+
     @Override
     public int getItemCount() {
         return mProducts.size();

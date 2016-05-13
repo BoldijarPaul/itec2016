@@ -5,4 +5,9 @@
     <string name="login_button">Login</string>
     <string name="add">Add</string>
     <string name="scan">Scan</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="scan_qr_code">Scan QR code</string>
+    <string name="product">Add product</string>
 </resources>
