@@ -1,7 +1,6 @@
 package com.itec.order.ui.activities;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
@@ -16,7 +15,7 @@ import java.util.List;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-public class ChooseProductActivity extends AppCompatActivity implements ProductsView {
+public class ChooseProductActivity extends BaseActivity implements ProductsView {
 
     @Bind(R.id.choose_product_recycler)
     RecyclerView mRecyclerView;

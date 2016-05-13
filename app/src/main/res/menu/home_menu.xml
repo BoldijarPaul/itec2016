@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/home_scan"
+        android:icon="@drawable/ic_camera_enhance_white_24dp"
+        android:title="@string/scan"/>
+    <item
+        android:id="@+id/home_cart"
+        android:icon="@drawable/ic_shopping_cart_white_24dp"
+        android:title="Cart"/>
+    <item
+        android:id="@+id/home_more"
+        android:icon="@drawable/ic_shopping_cart_white_24dp"
+        android:title="More"/>
+</menu>
