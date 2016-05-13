@@ -2,6 +2,7 @@ package com.itec.order.ui.activities;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import com.itec.app.R;
@@ -28,6 +29,8 @@ public class ChooseProductActivity extends AppCompatActivity implements Products
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_choose_product);
         ButterKnife.bind(this);
+        mRecyclerView = (RecyclerView) findViewById(R.id.choose_product_recycler);
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         mProductsAdapter = new ProductsAdapter();
         mRecyclerView.setAdapter(mProductsAdapter);
