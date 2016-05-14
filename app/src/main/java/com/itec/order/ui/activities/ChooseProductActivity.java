@@ -76,7 +76,7 @@ public class ChooseProductActivity extends BaseActivity implements ProductsView,
     private void setupToolbar() {
         setSupportActionBar(mToolbar);
         getSupportActionBar().setHomeButtonEnabled(true);
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
     @Override
