@@ -1,6 +1,5 @@
 package com.itec.order.ui.app;
 
-import android.app.Application;
 import android.content.Context;
 import android.content.SharedPreferences;
 
@@ -29,11 +28,21 @@ public class BaseApp extends SugarApp {
         mSharedPreferences = getSharedPreferences("app_name", Context.MODE_PRIVATE);
     }
 
+
     private static IntegerPreference token;
 
     public static IntegerPreference getToken() {
         if (token == null) {
             token = new IntegerPreference(mSharedPreferences, "token");
+        }
+        return token;
+    }
+
+    private static IntegerPreference tableId;
+
+    public static IntegerPreference getTableId() {
+        if (tableId == null) {
+            tableId = new IntegerPreference(mSharedPreferences, "tableId");
         }
         return token;
     }

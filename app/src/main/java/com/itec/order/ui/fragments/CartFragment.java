@@ -82,15 +82,17 @@ public class CartFragment extends Fragment implements CartView {
 
             @Override
             public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
-                mCartAdapter.removeProduct(viewHolder.getAdapterPosition());
-                updateEmptyLayoutVisibility();
-                Snackbar.make(mSnackView, R.string.product_removed, Snackbar.LENGTH_LONG)
-                        .setAction(R.string.undo, new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                mCartAdapter.undo();
-                            }
-                        }).show();
+                boolean productWasDeleted = mCartAdapter.removeProduct(viewHolder.getAdapterPosition());
+                if (productWasDeleted) {
+                    updateEmptyLayoutVisibility();
+                    Snackbar.make(mSnackView, R.string.product_removed, Snackbar.LENGTH_LONG)
+                            .setAction(R.string.undo, new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    mCartAdapter.undo();
+                                }
+                            }).show();
+                }
             }
         };
 
@@ -116,7 +118,7 @@ public class CartFragment extends Fragment implements CartView {
     private void finishOrder() {
         if (mCartAdapter.getItemCount() == 0) {
             Toast.makeText(getContext(), R.string.no_products, Toast.LENGTH_SHORT).show();
-        }else{
+        } else {
             mCartPresenter.sendOrder();
         }
     }

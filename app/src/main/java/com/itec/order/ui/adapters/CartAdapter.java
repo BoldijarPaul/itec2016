@@ -74,12 +74,20 @@ public class CartAdapter extends RecyclerView.Adapter<ProductViewHolder> {
         notifyItemInserted(getItemCount() - 1);
     }
 
-    public void removeProduct(int adapterPosition) {
+    public boolean removeProduct(int adapterPosition) {
         CurrentCartProduct currentCartProduct = mProducts.get(adapterPosition);
-        currentCartProduct.delete();
-        mLastCartDeleted = currentCartProduct;
-        mProducts.remove(adapterPosition);
-        notifyItemRemoved(adapterPosition);
+        if (currentCartProduct.amount == 1) {
+            currentCartProduct.delete();
+            mLastCartDeleted = currentCartProduct;
+            mProducts.remove(adapterPosition);
+            notifyItemRemoved(adapterPosition);
+            return true;
+        } else {
+            currentCartProduct.amount--;
+            currentCartProduct.save();
+            notifyItemChanged(adapterPosition);
+            return false;
+        }
     }
 
     public void undo() {
