@@ -24,7 +24,9 @@ public class MainActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
 
         if (BaseApp.getToken().isSet()) {
-            startActivity(new Intent(this, HomeActivity.class));
+            Intent intent = new Intent(this, HomeActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(intent);
             finish();
             return;
         }
