@@ -2,10 +2,12 @@ package com.itec.order.ui.fragments;
 
 
 import android.app.Activity;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
@@ -15,6 +17,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.itec.app.R;
@@ -74,7 +77,7 @@ public class CartFragment extends Fragment implements CartView {
 
     @Override
     public void onResume() {
-        getActivity().setTitle(getString(R.string.cart_ordered_items));
+        updatePrice();
         super.onResume();
     }
 
@@ -97,9 +100,11 @@ public class CartFragment extends Fragment implements CartView {
                                 @Override
                                 public void onClick(View v) {
                                     mCartAdapter.undo();
+                                    updatePrice();
                                 }
                             }).show();
                 }
+                updatePrice();
             }
         };
 
@@ -111,8 +116,20 @@ public class CartFragment extends Fragment implements CartView {
         mEmpty.setVisibility(mCartAdapter.getItemCount() == 0 ? View.VISIBLE : View.GONE);
     }
 
+    private void updatePrice() {
+        mRecyclerView.post(new Runnable() {
+            @Override
+            public void run() {
+                getActivity().setTitle(getString(R.string.price) + mCartAdapter.getPrice() + " " + getString(R.string.currency).toUpperCase());
+            }
+        });
+    }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == R.id.cart_note) {
+            showNoteDialog();
+        }
         if (item.getItemId() == R.id.cart_add) {
             startActivityForResult(ChooseProductActivity.createIntent(getContext()), CODE_CHOOSE);
         }
@@ -120,6 +137,35 @@ public class CartFragment extends Fragment implements CartView {
             finishOrder();
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private void showNoteDialog() {
+        View promptsView = LayoutInflater.from(getContext()).inflate(R.layout.input_dialog, null);
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
+                getContext());
+        alertDialogBuilder.setView(promptsView);
+
+        final EditText userInput = (EditText) promptsView
+                .findViewById(R.id.dialog_input);
+        userInput.setText(BaseApp.getNote().get());
+
+        alertDialogBuilder
+                .setCancelable(false)
+                .setPositiveButton(android.R.string.ok,
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                BaseApp.getNote().set(userInput.getText().toString());
+                            }
+                        })
+                .setNegativeButton(android.R.string.cancel,
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                dialog.cancel();
+                            }
+                        });
+
+        AlertDialog alertDialog = alertDialogBuilder.create();
+        alertDialog.show();
     }
 
     private void finishOrder() {
@@ -148,6 +194,8 @@ public class CartFragment extends Fragment implements CartView {
         List<FullProductRecord> products = FullProductRecord.find(FullProductRecord.class, "product_id =?", productId + "");
         if (products.size() > 0) {
             mCartAdapter.addProduct(products.get(0));
+            updatePrice();
+
         }
         updateEmptyLayoutVisibility();
     }
@@ -162,6 +210,7 @@ public class CartFragment extends Fragment implements CartView {
     @Override
     public void showOrderSuccessfull() {
         mCartAdapter.clear();
+        updatePrice();
         updateEmptyLayoutVisibility();
         Toast.makeText(getContext(), R.string.order_success, Toast.LENGTH_SHORT).show();
     }

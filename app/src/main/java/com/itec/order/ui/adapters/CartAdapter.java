@@ -103,4 +103,12 @@ public class CartAdapter extends RecyclerView.Adapter<ProductViewHolder> {
         mProducts.clear();
         notifyDataSetChanged();
     }
+
+    public int getPrice() {
+        int price = 0;
+        for (CurrentCartProduct product : mProducts) {
+            price += product.amount * product.productId;
+        }
+        return price;
+    }
 }

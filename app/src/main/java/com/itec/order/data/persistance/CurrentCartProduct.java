@@ -24,4 +24,13 @@ public class CurrentCartProduct extends SugarRecord {
         image = fullProductRecord.image;
         amount = 1;
     }
+
+    public CurrentCartProduct(String description, int productId, String image, int categoryId, String category, int amount) {
+        this.description = description;
+        this.productId = productId;
+        this.image = image;
+        this.categoryId = categoryId;
+        this.category = category;
+        this.amount = amount;
+    }
 }

@@ -14,17 +14,14 @@ public class OrderRecord extends SugarRecord {
     public int orderId;
     public Date date;
 
-    public List<OrderProductModel> products;
+    public List<OrderProductRecord> products;
 
     public OrderRecord() {
     }
 
-    public OrderRecord(int orderId, List<CurrentCartProduct> products) {
+    public OrderRecord(int orderId) {
         this.orderId = orderId;
         date = Calendar.getInstance().getTime();
         this.products = new ArrayList<>();
-        for (CurrentCartProduct cartProduct : products) {
-            this.products.add(new OrderProductModel(cartProduct));
-        }
     }
 }
