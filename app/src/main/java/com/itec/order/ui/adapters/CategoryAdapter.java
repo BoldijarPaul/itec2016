@@ -40,15 +40,16 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryViewHolder> {
     }
 
     @Override
-    public void onBindViewHolder(CategoryViewHolder holder, int position) {
+    public void onBindViewHolder(final CategoryViewHolder holder, int position) {
         final Category category = mCategories.get(position);
         Glide.with(mContext).load(category.image).into(holder.categoryImage);
         holder.categoryText.setText(category.description);
         holder.categoryCheck.setChecked(category.checked);
-        holder.categoryCheck.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                category.checked = isChecked;
+            public void onClick(View v) {
+                category.checked=!category.checked;
+                holder.categoryCheck.setChecked(category.checked);
             }
         });
     }
