@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 
 import com.bumptech.glide.Glide;
 import com.itec.app.R;
+import com.itec.order.data.ImageUtils;
 import com.itec.order.data.persistance.CurrentCartProduct;
 import com.itec.order.data.persistance.FullProductRecord;
 
@@ -41,7 +42,7 @@ public class CartAdapter extends RecyclerView.Adapter<ProductViewHolder> {
     @Override
     public void onBindViewHolder(ProductViewHolder holder, int position) {
         CurrentCartProduct product = mProducts.get(position);
-        Glide.with(mContext).load(product.image).into(holder.image);
+        Glide.with(mContext).load(ImageUtils.getImageForInt(product.productId)).into(holder.image);
         holder.title.setText(product.description);
         holder.subtitle.setText(product.category);
         if (product.amount <= 1) {
@@ -73,12 +74,20 @@ public class CartAdapter extends RecyclerView.Adapter<ProductViewHolder> {
         notifyItemInserted(getItemCount() - 1);
     }
 
-    public void removeProduct(int adapterPosition) {
+    public boolean removeProduct(int adapterPosition) {
         CurrentCartProduct currentCartProduct = mProducts.get(adapterPosition);
-        currentCartProduct.delete();
-        mLastCartDeleted = currentCartProduct;
-        mProducts.remove(adapterPosition);
-        notifyItemRemoved(adapterPosition);
+        if (currentCartProduct.amount == 1) {
+            currentCartProduct.delete();
+            mLastCartDeleted = currentCartProduct;
+            mProducts.remove(adapterPosition);
+            notifyItemRemoved(adapterPosition);
+            return true;
+        } else {
+            currentCartProduct.amount--;
+            currentCartProduct.save();
+            notifyItemChanged(adapterPosition);
+            return false;
+        }
     }
 
     public void undo() {

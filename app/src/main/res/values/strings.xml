@@ -10,17 +10,25 @@
     <string name="scan">Scan</string>
     <string name="scan_qr_code">Scan QR code</string>
     <string name="product">Add product</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="welcome_to_instaorder">Welcome to instaOrder!\n I will be your guide today.</string>
     <string name="search_products">Search products</string>
     <string name="quantity">"Quantity: "</string>
     <string name="product_removed">Product was removed</string>
+    <string name="undo">UNDO</string>
+    <string name="nothing">Nothing added yet</string>
+    <string name="finish_order">Finish order</string>
+    <string name="no_products">You didn\'t added any products</string>
+    <string name="order_success">Order successful!</string>
+    <string name="unknown_server_error">Unknown server error</string>
     <string name="nfc_help">Tip: you can also hold the NFC tag on the back of your phone to order.</string>
+<<<<<<< HEAD
     <string name="scan_options">Scan QR code \nor\n Hold NFC tag on the back of the phone</string>
     <string name="cart">Cart</string>
     <string name="profile">Profile</string>
     <string name="profile_fragment_title">Profile</string>
     <string name="cart_ordered_items">Your orders</string>
+=======
+    <string name="scan_options">Please scan your QR code or hold your phone near the NFC tag</string>
+    <string name="table_not_found">Table not found on server!</string>
+>>>>>>> test
 </resources>

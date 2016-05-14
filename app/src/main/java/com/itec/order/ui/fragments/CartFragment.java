@@ -15,8 +15,11 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.itec.app.R;
+import com.itec.order.contracts.CartPresenter;
+import com.itec.order.contracts.CartView;
 import com.itec.order.data.persistance.FullProductRecord;
 import com.itec.order.ui.activities.ChooseProductActivity;
 import com.itec.order.ui.adapters.CartAdapter;
@@ -29,17 +32,20 @@ import butterknife.ButterKnife;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class CartFragment extends Fragment {
+public class CartFragment extends Fragment implements CartView {
 
 
     private static final int CODE_CHOOSE = 101;
 
     @Bind(R.id.cart_recycler)
     RecyclerView mRecyclerView;
+    @Bind(R.id.cart_empty)
+    View mEmpty;
 
     View mSnackView;
 
     private CartAdapter mCartAdapter;
+    private CartPresenter mCartPresenter;
 
 
     @Override
@@ -61,6 +67,8 @@ public class CartFragment extends Fragment {
         mSnackView = view;
         mCartAdapter = new CartAdapter();
         setupRecycler();
+        updateEmptyLayoutVisibility();
+        mCartPresenter = new CartPresenter(this);
     }
 
     @Override
@@ -80,14 +88,17 @@ public class CartFragment extends Fragment {
 
             @Override
             public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
-                mCartAdapter.removeProduct(viewHolder.getAdapterPosition());
-                Snackbar.make(mSnackView, R.string.product_removed, Snackbar.LENGTH_LONG)
-                        .setAction("UNDO", new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                mCartAdapter.undo();
-                            }
-                        }).show();
+                boolean productWasDeleted = mCartAdapter.removeProduct(viewHolder.getAdapterPosition());
+                if (productWasDeleted) {
+                    updateEmptyLayoutVisibility();
+                    Snackbar.make(mSnackView, R.string.product_removed, Snackbar.LENGTH_LONG)
+                            .setAction(R.string.undo, new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    mCartAdapter.undo();
+                                }
+                            }).show();
+                }
             }
         };
 
@@ -95,12 +106,27 @@ public class CartFragment extends Fragment {
         itemTouchHelper.attachToRecyclerView(mRecyclerView);
     }
 
+    private void updateEmptyLayoutVisibility() {
+        mEmpty.setVisibility(mCartAdapter.getItemCount() == 0 ? View.VISIBLE : View.GONE);
+    }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.cart_add) {
             startActivityForResult(ChooseProductActivity.createIntent(getContext()), CODE_CHOOSE);
         }
+        if (item.getItemId() == R.id.cart_finish) {
+            finishOrder();
+        }
         return super.onOptionsItemSelected(item);
+    }
+
+    private void finishOrder() {
+        if (mCartAdapter.getItemCount() == 0) {
+            Toast.makeText(getContext(), R.string.no_products, Toast.LENGTH_SHORT).show();
+        } else {
+            mCartPresenter.sendOrder();
+        }
     }
 
     @Override
@@ -118,6 +144,7 @@ public class CartFragment extends Fragment {
         if (products.size() > 0) {
             mCartAdapter.addProduct(products.get(0));
         }
+        updateEmptyLayoutVisibility();
     }
 
     @Override
@@ -127,4 +154,18 @@ public class CartFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_cart, container, false);
     }
 
+    @Override
+    public void showOrderSuccessfull() {
+        Toast.makeText(getContext(), R.string.order_success, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void showNetworkError() {
+        Toast.makeText(getContext(), R.string.network_error, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void showError() {
+        Toast.makeText(getContext(), R.string.unknown_server_error, Toast.LENGTH_SHORT).show();
+    }
 }

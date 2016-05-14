@@ -2,19 +2,17 @@ package com.itec.order.ui.fragments;
 
 
 import android.graphics.PointF;
-import android.media.Image;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.dlazaro66.qrcodereaderview.QRCodeReaderView;
 import com.itec.app.R;
+import com.itec.order.contracts.ScanPresenter;
+import com.itec.order.contracts.ScanView;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -22,10 +20,12 @@ import butterknife.ButterKnife;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class ScanFragment extends NfcFragment implements QRCodeReaderView.OnQRCodeReadListener {
+public class ScanFragment extends NfcFragment implements QRCodeReaderView.OnQRCodeReadListener, ScanView {
 
     @Bind(R.id.scan_qrcamera)
     QRCodeReaderView mQRCodeReaderView;
+
+    private ScanPresenter mScanPresenter;
 
     public ScanFragment() {
         // Required empty public constructor
@@ -44,12 +44,13 @@ public class ScanFragment extends NfcFragment implements QRCodeReaderView.OnQRCo
         super.onViewCreated(view, savedInstanceState);
         ButterKnife.bind(this, view);
         mQRCodeReaderView.setOnQRCodeReadListener(this);
+        mScanPresenter = new ScanPresenter(this);
     }
 
 
     @Override
     public void onQRCodeRead(String text, PointF[] points) {
-        Toast.makeText(getContext(), text, Toast.LENGTH_SHORT).show();
+        mScanPresenter.findTableFromQr(text);
     }
 
     @Override
@@ -77,6 +78,23 @@ public class ScanFragment extends NfcFragment implements QRCodeReaderView.OnQRCo
 
     @Override
     public void showNfc(String ndef) {
-        Toast.makeText(getContext(), ndef, Toast.LENGTH_LONG).show();
+        mScanPresenter.findTablefromNfc(ndef);
+    }
+
+    @Override
+    public void showNetworkError() {
+        Toast.makeText(getContext(), R.string.network_error, Toast.LENGTH_SHORT).show();
+
+    }
+
+    @Override
+    public void showError() {
+        Toast.makeText(getContext(), R.string.table_not_found, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void showTable(int tableId) {
+        Toast.makeText(getContext(), "Table id: " + tableId, Toast.LENGTH_SHORT).show();
+
     }
 }
