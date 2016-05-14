@@ -23,4 +23,6 @@
     <string name="nfc_help">Tip: you can also hold the NFC tag on the back of your phone to order.</string>
     <string name="scan_options">Please scan your QR code or hold your phone near the NFC tag</string>
     <string name="table_not_found">Table not found on server!</string>
+    <string name="table_found">Table found. Tap if you want to scan again</string>
+    <string name="pls_scan_table">Please scan your current table!</string>
 </resources>

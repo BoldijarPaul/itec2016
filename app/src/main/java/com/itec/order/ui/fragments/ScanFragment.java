@@ -13,9 +13,11 @@ import com.dlazaro66.qrcodereaderview.QRCodeReaderView;
 import com.itec.app.R;
 import com.itec.order.contracts.ScanPresenter;
 import com.itec.order.contracts.ScanView;
+import com.itec.order.ui.app.BaseApp;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -24,6 +26,10 @@ public class ScanFragment extends NfcFragment implements QRCodeReaderView.OnQRCo
 
     @Bind(R.id.scan_qrcamera)
     QRCodeReaderView mQRCodeReaderView;
+    @Bind(R.id.scan_main_layout)
+    View mMainView;
+    @Bind(R.id.scan_status)
+    View mTableFoundView;
 
     private ScanPresenter mScanPresenter;
 
@@ -45,6 +51,7 @@ public class ScanFragment extends NfcFragment implements QRCodeReaderView.OnQRCo
         ButterKnife.bind(this, view);
         mQRCodeReaderView.setOnQRCodeReadListener(this);
         mScanPresenter = new ScanPresenter(this);
+        updateTableStatus();
     }
 
 
@@ -69,6 +76,18 @@ public class ScanFragment extends NfcFragment implements QRCodeReaderView.OnQRCo
         mQRCodeReaderView.getCameraManager().startPreview();
     }
 
+    private void updateTableStatus() {
+        boolean tableSet = BaseApp.getTableId().isSet();
+        if (tableSet) {
+            mTableFoundView.setVisibility(View.VISIBLE);
+            mMainView.setVisibility(View.GONE);
+        } else {
+            mTableFoundView.setVisibility(View.GONE);
+            mMainView.setVisibility(View.VISIBLE);
+        }
+
+    }
+
     @Override
     public void onPause() {
         super.onPause();
@@ -77,7 +96,7 @@ public class ScanFragment extends NfcFragment implements QRCodeReaderView.OnQRCo
 
     @Override
     public void showNfc(String ndef) {
-        mScanPresenter.findTablefromNfc(ndef);
+        mScanPresenter.findTableFromNfc(ndef);
     }
 
     @Override
@@ -93,7 +112,12 @@ public class ScanFragment extends NfcFragment implements QRCodeReaderView.OnQRCo
 
     @Override
     public void showTable(int tableId) {
-        Toast.makeText(getContext(), "Table id: " + tableId, Toast.LENGTH_SHORT).show();
+        updateTableStatus();
+    }
 
+    @OnClick(R.id.scan_status)
+    void statusClick() {
+        BaseApp.getTableId().delete();
+        updateTableStatus();
     }
 }

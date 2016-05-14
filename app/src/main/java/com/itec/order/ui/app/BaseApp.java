@@ -44,7 +44,7 @@ public class BaseApp extends SugarApp {
         if (tableId == null) {
             tableId = new IntegerPreference(mSharedPreferences, "tableId");
         }
-        return token;
+        return tableId;
     }
 
 }

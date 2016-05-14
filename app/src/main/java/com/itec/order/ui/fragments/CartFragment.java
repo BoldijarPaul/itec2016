@@ -23,6 +23,7 @@ import com.itec.order.contracts.CartView;
 import com.itec.order.data.persistance.FullProductRecord;
 import com.itec.order.ui.activities.ChooseProductActivity;
 import com.itec.order.ui.adapters.CartAdapter;
+import com.itec.order.ui.app.BaseApp;
 
 import java.util.List;
 
@@ -119,7 +120,11 @@ public class CartFragment extends Fragment implements CartView {
         if (mCartAdapter.getItemCount() == 0) {
             Toast.makeText(getContext(), R.string.no_products, Toast.LENGTH_SHORT).show();
         } else {
-            mCartPresenter.sendOrder();
+            if (BaseApp.getTableId().isSet()) {
+                mCartPresenter.sendOrder();
+            } else {
+                Toast.makeText(getContext(), R.string.pls_scan_table, Toast.LENGTH_SHORT).show();
+            }
         }
     }
 

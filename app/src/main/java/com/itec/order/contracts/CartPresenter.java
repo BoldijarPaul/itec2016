@@ -32,7 +32,7 @@ public class CartPresenter extends Presenter<CartView> {
             orders.add(new Order(cartProduct));
         }
         Call<OrderResponse> orderResponseCall = mOrderService.getProducts(BaseApp.getToken().get(),
-                12,
+                BaseApp.getTableId().get(),
                 orders);
         orderResponseCall.enqueue(new Callback<OrderResponse>() {
             @Override

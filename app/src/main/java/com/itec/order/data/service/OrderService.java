@@ -1,8 +1,9 @@
 package com.itec.order.data.service;
 
+import com.itec.order.data.models.NfcBody;
 import com.itec.order.data.models.Order;
 import com.itec.order.data.models.OrderResponse;
-import com.itec.order.data.models.TableBody;
+import com.itec.order.data.models.QrBody;
 import com.itec.order.data.models.TableResponse;
 
 import java.util.List;
@@ -25,6 +26,10 @@ public interface OrderService {
 
     @POST("/table")
     @Headers("Content-Type: application/json")
-    Call<TableResponse> getTable(@Body TableBody qrBody);
+    Call<TableResponse> getTable(@Body QrBody qrBody);
+
+    @POST("/table")
+    @Headers("Content-Type: application/json")
+    Call<TableResponse> getTable(@Body NfcBody nfcBody);
 
 }
