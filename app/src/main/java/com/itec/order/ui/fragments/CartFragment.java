@@ -63,6 +63,12 @@ public class CartFragment extends Fragment {
         setupRecycler();
     }
 
+    @Override
+    public void onResume() {
+        getActivity().setTitle(getString(R.string.cart_ordered_items));
+        super.onResume();
+    }
+
     private void setupRecycler() {
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         mRecyclerView.setAdapter(mCartAdapter);

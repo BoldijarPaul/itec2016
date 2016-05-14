@@ -65,6 +65,7 @@ public class ScanFragment extends NfcFragment implements QRCodeReaderView.OnQRCo
     @Override
     public void onResume() {
         super.onResume();
+        getActivity().setTitle(R.string.app_name);
         mQRCodeReaderView.getCameraManager().startPreview();
     }
 
