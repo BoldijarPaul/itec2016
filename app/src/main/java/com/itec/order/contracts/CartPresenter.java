@@ -3,6 +3,7 @@ package com.itec.order.contracts;
 import com.itec.order.data.models.Order;
 import com.itec.order.data.models.OrderResponse;
 import com.itec.order.data.persistance.CurrentCartProduct;
+import com.itec.order.data.persistance.OrderProductRecord;
 import com.itec.order.data.persistance.OrderRecord;
 import com.itec.order.data.service.OrderService;
 import com.itec.order.data.service.RetrofitUtils;
@@ -41,10 +42,15 @@ public class CartPresenter extends Presenter<CartView> {
                 if ("ok".equals(response.body().status)) {
                     if (response.body().orderIds != null && response.body().orderIds.size() > 0) {
                         OrderRecord record = new OrderRecord(
-                                response.body().orderIds.get(0),
-                                CurrentCartProduct.listAll(CurrentCartProduct.class));
+                                response.body().orderIds.get(0));
+                        List<CurrentCartProduct> currentCartProducts = CurrentCartProduct.listAll(CurrentCartProduct.class);
+                        for (CurrentCartProduct currentCartProduct : currentCartProducts) {
+                            OrderProductRecord productRecord = new OrderProductRecord(currentCartProduct, response.body().orderIds.get(0));
+                            productRecord.save();
+                        }
                         record.save();
                     }
+                    BaseApp.getNote().delete();
                     CurrentCartProduct.deleteAll(CurrentCartProduct.class);
                     getView().showOrderSuccessfull();
                 } else {

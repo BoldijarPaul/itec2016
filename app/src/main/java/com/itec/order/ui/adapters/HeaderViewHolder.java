@@ -10,15 +10,16 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 
 /**
- * Created by Paul on 5/14/2016.
+ * Created by Paul on 5/13/2016.
  */
-public class OrderViewHolder extends RecyclerView.ViewHolder {
-    @Bind(R.id.order_date)
-    TextView date;
-    @Bind(R.id.order_price)
-    TextView price;
+public class HeaderViewHolder extends RecyclerView.ViewHolder {
 
-    public OrderViewHolder(View itemView) {
+    @Bind(R.id.header_email)
+    TextView mEmail;
+    @Bind(R.id.header_logout)
+    View mLogout;
+
+    public HeaderViewHolder(View itemView) {
         super(itemView);
         ButterKnife.bind(this, itemView);
     }

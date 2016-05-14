@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 
 import com.itec.app.R;
 import com.itec.order.data.IntegerPreference;
+import com.itec.order.data.StringPreference;
 import com.orm.SugarApp;
 
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
@@ -45,6 +46,24 @@ public class BaseApp extends SugarApp {
             tableId = new IntegerPreference(mSharedPreferences, "tableId");
         }
         return tableId;
+    }
+
+    private static StringPreference note;
+
+    public static StringPreference getNote() {
+        if (note == null) {
+            note = new StringPreference(mSharedPreferences, "note");
+        }
+        return note;
+    }
+
+    private static StringPreference email;
+
+    public static StringPreference getEmail() {
+        if (email == null) {
+            email = new StringPreference(mSharedPreferences, "email");
+        }
+        return email;
     }
 
 }

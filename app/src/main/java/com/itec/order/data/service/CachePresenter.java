@@ -30,6 +30,7 @@ public class CachePresenter {
             @Override
             public void onResponse(Call<CategoriesResponse> call, Response<CategoriesResponse> response) {
                 CategoryRecord.deleteAll(CategoryRecord.class);
+                if (response.body() == null) return;
                 List<Category> categories = response.body().categories;
                 for (Category category : categories) {
                     new CategoryRecord(category).save();
@@ -53,6 +54,7 @@ public class CachePresenter {
         productsResponseCall.enqueue(new Callback<ProductsResponse>() {
             @Override
             public void onResponse(Call<ProductsResponse> call, Response<ProductsResponse> response) {
+                if (response.body() == null) return;
                 List<Product> products = response.body().products;
                 FullProductRecord.deleteAll(FullProductRecord.class);
                 for (Product product : products) {
