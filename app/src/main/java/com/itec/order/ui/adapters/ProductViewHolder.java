@@ -21,6 +21,8 @@ public class ProductViewHolder extends RecyclerView.ViewHolder {
     TextView subtitle;
     @Bind(R.id.product_image)
     ImageView image;
+    @Bind(R.id.product_amount)
+    TextView amount;
 
     public ProductViewHolder(View itemView) {
         super(itemView);

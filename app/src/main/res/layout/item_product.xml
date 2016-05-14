@@ -47,5 +47,15 @@
                 android:textSize="18sp"/>
         </LinearLayout>
 
+        <TextView
+            android:id="@+id/product_amount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end|bottom"
+            android:layout_margin="10dp"
+            android:layout_marginLeft="10dp"
+            android:textColor="@color/colorPrimary"
+            android:textSize="15sp"
+            tools:text="Amount: 5"/>
     </FrameLayout>
 </android.support.v7.widget.CardView>

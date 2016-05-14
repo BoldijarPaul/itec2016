@@ -21,6 +21,7 @@ public class CartAdapter extends RecyclerView.Adapter<ProductViewHolder> {
 
     private List<CurrentCartProduct> mProducts;
     private Context mContext;
+    private CurrentCartProduct mLastCartDeleted;
 
     public CartAdapter() {
         try {
@@ -43,6 +44,11 @@ public class CartAdapter extends RecyclerView.Adapter<ProductViewHolder> {
         Glide.with(mContext).load(product.image).into(holder.image);
         holder.title.setText(product.description);
         holder.subtitle.setText(product.category);
+        if (product.amount <= 1) {
+            holder.amount.setText(null);
+        } else {
+            holder.amount.setText(mContext.getString(R.string.quantity) + product.amount);
+        }
     }
 
     @Override
@@ -51,9 +57,36 @@ public class CartAdapter extends RecyclerView.Adapter<ProductViewHolder> {
     }
 
     public void addProduct(FullProductRecord fullProductRecord) {
+        for (int i = 0; i < mProducts.size(); i++) {
+            CurrentCartProduct product = mProducts.get(i);
+            if (product.productId == fullProductRecord.productId) {
+                product.amount++;
+                product.save();
+                notifyItemChanged(i);
+                return;
+            }
+        }
         CurrentCartProduct currentCartProduct = new CurrentCartProduct(fullProductRecord);
         currentCartProduct.save();
         mProducts.add(currentCartProduct);
+
         notifyItemInserted(getItemCount() - 1);
+    }
+
+    public void removeProduct(int adapterPosition) {
+        CurrentCartProduct currentCartProduct = mProducts.get(adapterPosition);
+        currentCartProduct.delete();
+        mLastCartDeleted = currentCartProduct;
+        mProducts.remove(adapterPosition);
+        notifyItemRemoved(adapterPosition);
+    }
+
+    public void undo() {
+        if (mLastCartDeleted != null) {
+            mLastCartDeleted.save();
+            mProducts.add(mLastCartDeleted);
+            notifyItemInserted(getItemCount() - 1);
+            mLastCartDeleted = null;
+        }
     }
 }

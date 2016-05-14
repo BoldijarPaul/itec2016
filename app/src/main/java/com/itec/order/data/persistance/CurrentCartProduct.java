@@ -11,6 +11,7 @@ public class CurrentCartProduct extends SugarRecord {
     public String image;
     public int categoryId;
     public String category;
+    public int amount = 1;
 
     public CurrentCartProduct() {
     }
@@ -21,5 +22,6 @@ public class CurrentCartProduct extends SugarRecord {
         category = fullProductRecord.category;
         productId = fullProductRecord.productId;
         image = fullProductRecord.image;
+        amount = 1;
     }
 }
