@@ -1,5 +1,6 @@
 package com.itec.order.ui.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
 import android.support.v4.app.Fragment;
@@ -7,6 +8,7 @@ import android.support.v4.app.Fragment;
 import com.itec.app.R;
 import com.itec.order.data.service.CachePresenter;
 import com.itec.order.ui.fragments.CartFragment;
+import com.itec.order.ui.fragments.NfcFragment;
 import com.itec.order.ui.fragments.ScanFragment;
 import com.roughike.bottombar.BottomBar;
 import com.roughike.bottombar.OnMenuTabClickListener;
@@ -25,6 +27,17 @@ public class HomeActivity extends BaseActivity {
         new CachePresenter().startCaching();
         setupFragments();
         setupBottomBar(savedInstanceState);
+    }
+
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        Fragment fragment = getSupportFragmentManager().findFragmentById(R.id.home_container);
+        if (fragment instanceof NfcFragment) {
+            NfcFragment nfcFragment = (NfcFragment) fragment;
+            nfcFragment.onNewIntent(intent);
+        }
+
     }
 
     private void setupFragments() {
