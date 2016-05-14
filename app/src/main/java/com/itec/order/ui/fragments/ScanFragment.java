@@ -18,7 +18,7 @@ import butterknife.ButterKnife;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class ScanFragment extends Fragment implements QRCodeReaderView.OnQRCodeReadListener {
+public class ScanFragment extends NfcFragment implements QRCodeReaderView.OnQRCodeReadListener {
 
     @Bind(R.id.scan_qrcamera)
     QRCodeReaderView mQRCodeReaderView;
@@ -79,5 +79,10 @@ public class ScanFragment extends Fragment implements QRCodeReaderView.OnQRCodeR
     public void onPause() {
         super.onPause();
         mQRCodeReaderView.getCameraManager().stopPreview();
+    }
+
+    @Override
+    public void showNfc(String ndef) {
+        Toast.makeText(getContext(),ndef,Toast.LENGTH_LONG).show();
     }
 }
