@@ -10,9 +10,6 @@
     <string name="scan">Scan</string>
     <string name="scan_qr_code">Scan QR code</string>
     <string name="product">Add product</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="welcome_to_instaorder">Welcome to instaOrder!\n I will be your guide today.</string>
     <string name="search_products">Search products</string>
     <string name="quantity">"Quantity: "</string>
@@ -23,4 +20,6 @@
     <string name="no_products">You didn\'t added any products</string>
     <string name="order_success">Order successful!</string>
     <string name="unknown_server_error">Unknown server error</string>
+    <string name="nfc_help">Tip: you can also hold the NFC tag on the back of your phone to order.</string>
+    <string name="scan_options">Scan QR code \nor\n Hold NFC tag on the back of the phone</string>
 </resources>
