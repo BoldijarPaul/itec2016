@@ -39,11 +39,13 @@ public class CartPresenter extends Presenter<CartView> {
             @Override
             public void onResponse(Call<OrderResponse> call, Response<OrderResponse> response) {
                 if ("ok".equals(response.body().status)) {
-                    CurrentCartProduct.deleteAll(CurrentCartProduct.class);
                     if (response.body().orderIds != null && response.body().orderIds.size() > 0) {
-                        OrderRecord record = new OrderRecord(response.body().orderIds.get(0));
+                        OrderRecord record = new OrderRecord(
+                                response.body().orderIds.get(0),
+                                CurrentCartProduct.listAll(CurrentCartProduct.class));
                         record.save();
                     }
+                    CurrentCartProduct.deleteAll(CurrentCartProduct.class);
                     getView().showOrderSuccessfull();
                 } else {
                     getView().showError();

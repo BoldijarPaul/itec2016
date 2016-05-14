@@ -9,7 +9,9 @@ import android.view.ViewGroup;
 import com.itec.app.R;
 import com.itec.order.data.persistance.OrderRecord;
 
+import java.text.SimpleDateFormat;
 import java.util.List;
+import java.util.Locale;
 
 /**
  * Created by Paul on 5/14/2016.
@@ -17,6 +19,7 @@ import java.util.List;
 public class OrdersAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private static final int TYPE_HEADER = 1, TYPE_ORDER = 2;
     private Context mContext;
+    private SimpleDateFormat mSimpleDateFormat = new SimpleDateFormat("dd.MM.YYYY hh:mm", Locale.getDefault());
 
     private List<OrderRecord> mOrders;
 
@@ -43,7 +46,7 @@ public class OrdersAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         if (getItemViewType(position) == TYPE_ORDER) {
             OrderViewHolder orderViewHolder = (OrderViewHolder) holder;
-            orderViewHolder.date.setText(mOrders.get(position).date.toString());
+            orderViewHolder.date.setText(mSimpleDateFormat.format(mOrders.get(position).date));
         }
     }
 
