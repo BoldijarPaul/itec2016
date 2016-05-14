@@ -37,4 +37,5 @@
     <string name="note">note</string>
     <string name="note_waiter">Note for waiter:</string>
     <string name="previous_orders">Previous orders:</string>
+    <string name="tutorial_swipe">Swipe right to erase one of the chosen products</string>
 </resources>
