@@ -31,7 +31,7 @@ public class MainActivity extends BaseActivity {
             return;
         }
         setContentView(R.layout.activity_main);
-        mWelcomeFragmentPagerAdapter = new WelcomeFragmentPagerAdapter(getSupportFragmentManager());
+        mWelcomeFragmentPagerAdapter = new WelcomeFragmentPagerAdapter(getSupportFragmentManager(),this);
         ButterKnife.bind(this);
         mViewPager.setAdapter(mWelcomeFragmentPagerAdapter);
         mIndicator.setViewPager(mViewPager);

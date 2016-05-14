@@ -10,6 +10,7 @@ import com.itec.order.data.events.LogoutEvent;
 import com.itec.order.data.service.CachePresenter;
 import com.itec.order.ui.app.BaseApp;
 import com.itec.order.ui.fragments.CartFragment;
+import com.itec.order.ui.fragments.CategoriesFragment;
 import com.itec.order.ui.fragments.NfcFragment;
 import com.itec.order.ui.fragments.ScanFragment;
 import com.roughike.bottombar.BottomBar;

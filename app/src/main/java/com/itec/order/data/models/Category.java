@@ -12,4 +12,6 @@ public class Category {
     public String image;
     @SerializedName("description")
     public String description;
+
+    public boolean checked;
 }
