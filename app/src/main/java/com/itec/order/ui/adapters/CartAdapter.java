@@ -8,7 +8,6 @@ import android.view.ViewGroup;
 
 import com.bumptech.glide.Glide;
 import com.itec.app.R;
-import com.itec.order.data.ImageUtils;
 import com.itec.order.data.persistance.CurrentCartProduct;
 import com.itec.order.data.persistance.FullProductRecord;
 
@@ -42,7 +41,7 @@ public class CartAdapter extends RecyclerView.Adapter<ProductViewHolder> {
     @Override
     public void onBindViewHolder(ProductViewHolder holder, int position) {
         CurrentCartProduct product = mProducts.get(position);
-        Glide.with(mContext).load(ImageUtils.getImageForInt(product.productId)).into(holder.image);
+        Glide.with(mContext).load(product.image).into(holder.image);
         holder.title.setText(product.description);
         holder.subtitle.setText(product.category);
         if (product.amount <= 1) {
@@ -50,6 +49,7 @@ public class CartAdapter extends RecyclerView.Adapter<ProductViewHolder> {
         } else {
             holder.amount.setText(mContext.getString(R.string.quantity) + product.amount);
         }
+        holder.price.setText(product.productId + " " + mContext.getString(R.string.currency));
     }
 
     @Override
@@ -97,5 +97,10 @@ public class CartAdapter extends RecyclerView.Adapter<ProductViewHolder> {
             notifyItemInserted(getItemCount() - 1);
             mLastCartDeleted = null;
         }
+    }
+
+    public void clear() {
+        mProducts.clear();
+        notifyDataSetChanged();
     }
 }

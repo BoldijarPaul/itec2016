@@ -14,6 +14,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 
 import com.itec.app.R;
@@ -74,6 +75,8 @@ public class ChooseProductActivity extends BaseActivity implements ProductsView,
 
     private void setupToolbar() {
         setSupportActionBar(mToolbar);
+        getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
     }
 
     @Override
@@ -94,6 +97,14 @@ public class ChooseProductActivity extends BaseActivity implements ProductsView,
                 CursorAdapter.FLAG_REGISTER_CONTENT_OBSERVER);
         mSearchView.setSuggestionsAdapter(mSimpleCursorAdapter);
         return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            finish();
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     private void productChoosen(FullProductRecord product) {

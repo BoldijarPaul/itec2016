@@ -29,4 +29,5 @@
     <string name="table_not_found">Table not found on server!</string>
     <string name="table_found">Table found. Tap if you want to scan again</string>
     <string name="pls_scan_table">Please scan your current table!</string>
+    <string name="currency">ron</string>
 </resources>

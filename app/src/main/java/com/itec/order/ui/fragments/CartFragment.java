@@ -161,6 +161,8 @@ public class CartFragment extends Fragment implements CartView {
 
     @Override
     public void showOrderSuccessfull() {
+        mCartAdapter.clear();
+        updateEmptyLayoutVisibility();
         Toast.makeText(getContext(), R.string.order_success, Toast.LENGTH_SHORT).show();
     }
 

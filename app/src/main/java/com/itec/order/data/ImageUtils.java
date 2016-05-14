@@ -17,8 +17,7 @@ public class ImageUtils {
 
     private static Random random = new Random();
 
-    public static String getImageForInt(int value) {
-        random.setSeed(value);
+    public static String getRandomImage() {
         return HARDCODED_IMAGES[random.nextInt(HARDCODED_IMAGES.length)];
     }
 }

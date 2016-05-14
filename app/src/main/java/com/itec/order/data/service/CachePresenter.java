@@ -1,5 +1,6 @@
 package com.itec.order.data.service;
 
+import com.itec.order.data.ImageUtils;
 import com.itec.order.data.models.CategoriesResponse;
 import com.itec.order.data.models.Category;
 import com.itec.order.data.models.Product;
@@ -55,6 +56,7 @@ public class CachePresenter {
                 List<Product> products = response.body().products;
                 FullProductRecord.deleteAll(FullProductRecord.class);
                 for (Product product : products) {
+                    product.image = ImageUtils.getRandomImage();
                     new FullProductRecord(product).save();
                 }
             }

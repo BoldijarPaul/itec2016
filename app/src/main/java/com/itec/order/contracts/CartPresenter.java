@@ -3,6 +3,7 @@ package com.itec.order.contracts;
 import com.itec.order.data.models.Order;
 import com.itec.order.data.models.OrderResponse;
 import com.itec.order.data.persistance.CurrentCartProduct;
+import com.itec.order.data.persistance.OrderRecord;
 import com.itec.order.data.service.OrderService;
 import com.itec.order.data.service.RetrofitUtils;
 import com.itec.order.ui.app.BaseApp;
@@ -38,6 +39,11 @@ public class CartPresenter extends Presenter<CartView> {
             @Override
             public void onResponse(Call<OrderResponse> call, Response<OrderResponse> response) {
                 if ("ok".equals(response.body().status)) {
+                    CurrentCartProduct.deleteAll(CurrentCartProduct.class);
+                    if (response.body().orderIds != null && response.body().orderIds.size() > 0) {
+                        OrderRecord record = new OrderRecord(response.body().orderIds.get(0));
+                        record.save();
+                    }
                     getView().showOrderSuccessfull();
                 } else {
                     getView().showError();
