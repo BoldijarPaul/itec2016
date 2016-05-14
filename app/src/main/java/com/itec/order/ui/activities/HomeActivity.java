@@ -13,12 +13,15 @@ import com.itec.order.ui.fragments.ScanFragment;
 import com.roughike.bottombar.BottomBar;
 import com.roughike.bottombar.OnMenuTabClickListener;
 
+import layout.ProfileFragment;
+
 public class HomeActivity extends BaseActivity {
 
     private BottomBar mBottomBar;
 
     private ScanFragment mScanFragment;
     private CartFragment mCartFragment;
+    private ProfileFragment mProfileFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +46,7 @@ public class HomeActivity extends BaseActivity {
     private void setupFragments() {
         mScanFragment = new ScanFragment();
         mCartFragment = new CartFragment();
+        mProfileFragment= new ProfileFragment();
         getSupportFragmentManager().beginTransaction().add(R.id.home_container, mScanFragment).commit();
     }
 
@@ -60,6 +64,9 @@ public class HomeActivity extends BaseActivity {
                 }
                 if (menuItemId == R.id.home_scan) {
                     switchFragment(mScanFragment);
+                }
+                if(menuItemId == R.id.home_profile){
+                    switchFragment(mProfileFragment);
                 }
             }
 
