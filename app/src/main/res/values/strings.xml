@@ -17,4 +17,6 @@
     <string name="search_products">Search products</string>
     <string name="quantity">"Quantity: "</string>
     <string name="product_removed">Product was removed</string>
+    <string name="undo">UNDO</string>
+    <string name="nothing">Nothing added yet</string>
 </resources>

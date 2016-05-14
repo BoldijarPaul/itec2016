@@ -36,6 +36,8 @@ public class CartFragment extends Fragment {
 
     @Bind(R.id.cart_recycler)
     RecyclerView mRecyclerView;
+    @Bind(R.id.cart_empty)
+    View mEmpty;
 
     View mSnackView;
 
@@ -61,6 +63,7 @@ public class CartFragment extends Fragment {
         mSnackView = view;
         mCartAdapter = new CartAdapter();
         setupRecycler();
+        updateEmptyLayoutVisibility();
     }
 
     private void setupRecycler() {
@@ -75,8 +78,9 @@ public class CartFragment extends Fragment {
             @Override
             public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
                 mCartAdapter.removeProduct(viewHolder.getAdapterPosition());
+                updateEmptyLayoutVisibility();
                 Snackbar.make(mSnackView, R.string.product_removed, Snackbar.LENGTH_LONG)
-                        .setAction("UNDO", new View.OnClickListener() {
+                        .setAction(R.string.undo, new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
                                 mCartAdapter.undo();
@@ -87,6 +91,10 @@ public class CartFragment extends Fragment {
 
         ItemTouchHelper itemTouchHelper = new ItemTouchHelper(simpleCallback);
         itemTouchHelper.attachToRecyclerView(mRecyclerView);
+    }
+
+    private void updateEmptyLayoutVisibility() {
+        mEmpty.setVisibility(mCartAdapter.getItemCount() == 0 ? View.VISIBLE : View.GONE);
     }
 
     @Override
@@ -112,6 +120,7 @@ public class CartFragment extends Fragment {
         if (products.size() > 0) {
             mCartAdapter.addProduct(products.get(0));
         }
+        updateEmptyLayoutVisibility();
     }
 
     @Override
