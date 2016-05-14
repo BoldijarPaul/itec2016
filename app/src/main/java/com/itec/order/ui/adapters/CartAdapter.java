@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 
 import com.bumptech.glide.Glide;
 import com.itec.app.R;
+import com.itec.order.data.persistance.CurrentCartProduct;
 import com.itec.order.data.persistance.FullProductRecord;
 
 import java.util.ArrayList;
@@ -18,13 +19,15 @@ import java.util.List;
  */
 public class CartAdapter extends RecyclerView.Adapter<ProductViewHolder> {
 
-    private List<FullProductRecord> mProducts = new ArrayList<>();
+    private List<CurrentCartProduct> mProducts;
     private Context mContext;
 
-    public void setProducts(List<FullProductRecord> products) {
-        mProducts.clear();
-        mProducts.addAll(products);
-        notifyDataSetChanged();
+    public CartAdapter() {
+        try {
+            mProducts = CurrentCartProduct.listAll(CurrentCartProduct.class);
+        } catch (Exception e) {
+            mProducts = new ArrayList<>();
+        }
     }
 
     @Override
@@ -36,7 +39,7 @@ public class CartAdapter extends RecyclerView.Adapter<ProductViewHolder> {
 
     @Override
     public void onBindViewHolder(ProductViewHolder holder, int position) {
-        FullProductRecord product = mProducts.get(position);
+        CurrentCartProduct product = mProducts.get(position);
         Glide.with(mContext).load(product.image).into(holder.image);
         holder.title.setText(product.description);
         holder.subtitle.setText(product.category);
@@ -48,7 +51,9 @@ public class CartAdapter extends RecyclerView.Adapter<ProductViewHolder> {
     }
 
     public void addProduct(FullProductRecord fullProductRecord) {
-        mProducts.add(fullProductRecord);
+        CurrentCartProduct currentCartProduct = new CurrentCartProduct(fullProductRecord);
+        currentCartProduct.save();
+        mProducts.add(currentCartProduct);
         notifyItemInserted(getItemCount() - 1);
     }
 }

@@ -1,10 +1,12 @@
 package com.itec.order.ui.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 
 import com.itec.app.R;
 import com.itec.order.ui.adapters.WelcomeFragmentPagerAdapter;
+import com.itec.order.ui.app.BaseApp;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -20,6 +22,12 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        if (BaseApp.getToken().isSet()) {
+            startActivity(new Intent(this, HomeActivity.class));
+            finish();
+            return;
+        }
         setContentView(R.layout.activity_main);
         mWelcomeFragmentPagerAdapter = new WelcomeFragmentPagerAdapter(getSupportFragmentManager());
         ButterKnife.bind(this);
