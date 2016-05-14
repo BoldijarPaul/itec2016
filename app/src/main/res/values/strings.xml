@@ -19,4 +19,8 @@
     <string name="product_removed">Product was removed</string>
     <string name="undo">UNDO</string>
     <string name="nothing">Nothing added yet</string>
+    <string name="finish_order">Finish order</string>
+    <string name="no_products">You didn\'t added any products</string>
+    <string name="order_success">Order successful!</string>
+    <string name="unknown_server_error">Unknown server error</string>
 </resources>

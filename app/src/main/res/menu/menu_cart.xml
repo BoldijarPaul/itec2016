@@ -6,4 +6,9 @@
         android:icon="@drawable/ic_add_box_white_24dp"
         android:title="@string/product"
         app:showAsAction="ifRoom"/>
+    <item
+        android:id="@+id/cart_finish"
+        android:icon="@drawable/ic_done_white_24dp"
+        android:title="@string/finish_order"
+        app:showAsAction="ifRoom"/>
 </menu>
