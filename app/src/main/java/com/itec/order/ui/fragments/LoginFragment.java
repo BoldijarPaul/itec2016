@@ -78,7 +78,10 @@ public class LoginFragment extends Fragment implements LoginView {
     @Override
     public void loginSuccesful(int token) {
         BaseApp.getToken().set(token);
-        startActivity(new Intent(getContext(), HomeActivity.class));
+        Intent intent = new Intent(getContext(), HomeActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(intent);
+        getActivity().finish();
         Toast.makeText(getContext(), R.string.login_succesful, Toast.LENGTH_SHORT).show();
     }
 }
