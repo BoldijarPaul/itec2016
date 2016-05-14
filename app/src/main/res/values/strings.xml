@@ -29,4 +29,8 @@
     <string name="table_not_found">Table not found on server!</string>
     <string name="table_found">Table found. Tap if you want to scan again</string>
     <string name="pls_scan_table">Please scan your current table!</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="tutorial_photo_description">"In order to place an order, you have to select the products you want to but and scan the qr code (or place the NFC tag on the back of your phone , and swipe until the order is placed) "</string>
 </resources>
