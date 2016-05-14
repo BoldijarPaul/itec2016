@@ -2,11 +2,15 @@ package com.itec.order.ui.fragments;
 
 
 import android.graphics.PointF;
+import android.media.Image;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.dlazaro66.qrcodereaderview.QRCodeReaderView;
@@ -22,8 +26,6 @@ public class ScanFragment extends NfcFragment implements QRCodeReaderView.OnQRCo
 
     @Bind(R.id.scan_qrcamera)
     QRCodeReaderView mQRCodeReaderView;
-    @Bind(R.id.scan_button)
-    View mScanButton;
 
     public ScanFragment() {
         // Required empty public constructor
@@ -42,17 +44,8 @@ public class ScanFragment extends NfcFragment implements QRCodeReaderView.OnQRCo
         super.onViewCreated(view, savedInstanceState);
         ButterKnife.bind(this, view);
         mQRCodeReaderView.setOnQRCodeReadListener(this);
-        mScanButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                clickQr();
-            }
-        });
     }
 
-    void clickQr() {
-        mQRCodeReaderView.setVisibility(View.VISIBLE);
-    }
 
     @Override
     public void onQRCodeRead(String text, PointF[] points) {
@@ -83,6 +76,6 @@ public class ScanFragment extends NfcFragment implements QRCodeReaderView.OnQRCo
 
     @Override
     public void showNfc(String ndef) {
-        Toast.makeText(getContext(),ndef,Toast.LENGTH_LONG).show();
+        Toast.makeText(getContext(), ndef, Toast.LENGTH_LONG).show();
     }
 }
