@@ -21,6 +21,14 @@
     <string name="order_success">Order successful!</string>
     <string name="unknown_server_error">Unknown server error</string>
     <string name="nfc_help">Tip: you can also hold the NFC tag on the back of your phone to order.</string>
+<<<<<<< HEAD
+    <string name="scan_options">Scan QR code \nor\n Hold NFC tag on the back of the phone</string>
+    <string name="cart">Cart</string>
+    <string name="profile">Profile</string>
+    <string name="profile_fragment_title">Profile</string>
+    <string name="cart_ordered_items">Your orders</string>
+=======
     <string name="scan_options">Please scan your QR code or hold your phone near the NFC tag</string>
     <string name="table_not_found">Table not found on server!</string>
+>>>>>>> test
 </resources>
