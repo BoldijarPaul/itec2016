@@ -1,0 +1,76 @@
+<FrameLayout
+    android:id="@+id/login_layout"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.itec.app.ui.fragments.LoginFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_gravity="center_horizontal"
+            android:alpha="0.35"
+            android:src="@drawable/profile"/>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/input_layout_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/login_email"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:drawableLeft="@drawable/ic_email_black_24dp"
+                android:drawablePadding="15dp"
+                android:drawableTint="@color/colorPrimary"
+                android:hint="@string/email"
+                android:inputType="textEmailAddress"
+                android:text="c8@ligaac.ro"/>
+
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/login_password"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:drawableLeft="@drawable/ic_lock_black_24dp"
+                android:drawablePadding="15dp"
+                android:drawableTint="@color/colorPrimary"
+                android:hint="@string/password"
+                android:inputType="textPassword"
+                android:text="parola8"/>
+
+        </android.support.design.widget.TextInputLayout>
+
+        <TextView
+            android:id="@+id/login_button"
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:layout_margin="15dp"
+            android:background="@drawable/primary_color_selector"
+            android:clickable="true"
+            android:gravity="center"
+            android:text="@string/login_button"
+            android:textAllCaps="true"
+            android:textColor="#ffffff"
+            android:textSize="20sp"
+            />
+    </LinearLayout>
+
+</FrameLayout>

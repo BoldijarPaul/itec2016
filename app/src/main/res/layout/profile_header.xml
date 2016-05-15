@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:layout_margin="20dp"
+              android:orientation="vertical">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/header_email"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:drawableLeft="@drawable/ic_email_black_24dp"
+            android:drawablePadding="15dp"
+            android:drawableTint="@color/colorPrimary"
+            android:gravity="center_vertical"
+            android:text="maiL@gmail.com"/>
+
+        <Button
+            android:id="@+id/header_logout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:background="@drawable/primary_color_selector"
+            android:text="Log out"
+            android:textAllCaps="true"
+            android:textColor="@android:color/white"/>
+
+    </FrameLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="@string/previous_orders"
+        android:textAllCaps="true"/>
+</LinearLayout>
