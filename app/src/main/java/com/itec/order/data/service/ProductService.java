@@ -20,6 +20,4 @@ public interface ProductService {
 
     @GET("/categories")
     Call<CategoriesResponse> getCategories();
-
-
 }

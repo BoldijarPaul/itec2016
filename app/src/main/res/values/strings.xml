@@ -39,4 +39,5 @@
     <string name="previous_orders">Previous orders:</string>
     <string name="tutorial_swipe">Swipe right to erase one of the chosen products</string>
     <string name="tutorial_waiter">You can also write an additional note for the waiter about your order</string>
+    <string name="pay">Pay</string>
 </resources>
