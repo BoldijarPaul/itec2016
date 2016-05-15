@@ -1,6 +1,8 @@
 # itec2016
 
+### demo
 
+[![IMAGE ALT TEXT HERE](http://img.youtube.com/vi/ElNn1lNp-pM/0.jpg)](http://www.youtube.com/watch?v=ElNn1lNp-pM)
 ### functionalitati
 
 * vizualizate tutorial
