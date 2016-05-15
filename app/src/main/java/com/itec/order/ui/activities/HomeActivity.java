@@ -10,8 +10,8 @@ import com.itec.order.data.events.LogoutEvent;
 import com.itec.order.data.service.CachePresenter;
 import com.itec.order.ui.app.BaseApp;
 import com.itec.order.ui.fragments.CartFragment;
-import com.itec.order.ui.fragments.CategoriesFragment;
 import com.itec.order.ui.fragments.NfcFragment;
+import com.itec.order.ui.fragments.PayFragment;
 import com.itec.order.ui.fragments.ScanFragment;
 import com.roughike.bottombar.BottomBar;
 import com.roughike.bottombar.OnMenuTabClickListener;
@@ -29,6 +29,7 @@ public class HomeActivity extends BaseActivity {
     private ScanFragment mScanFragment;
     private CartFragment mCartFragment;
     private ProfileFragment mProfileFragment;
+    private Fragment mPayFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +55,7 @@ public class HomeActivity extends BaseActivity {
         mScanFragment = new ScanFragment();
         mCartFragment = new CartFragment();
         mProfileFragment = new ProfileFragment();
+        mPayFragment = new PayFragment();
         getSupportFragmentManager().beginTransaction().add(R.id.home_container, mScanFragment).commit();
     }
 
@@ -94,6 +96,9 @@ public class HomeActivity extends BaseActivity {
                 }
                 if (menuItemId == R.id.home_profile) {
                     switchFragment(mProfileFragment);
+                }
+                if (menuItemId == R.id.home_pay) {
+                    switchFragment(mPayFragment);
                 }
             }
 
