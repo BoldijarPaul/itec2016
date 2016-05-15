@@ -20,10 +20,11 @@ public class WelcomeFragmentPagerAdapter extends FragmentPagerAdapter {
 
     public WelcomeFragmentPagerAdapter(FragmentManager fm, Context context) {
         super(fm);
-        mFragments = new Fragment[3];
+        mFragments = new Fragment[4];
         mFragments[0] = new WelcomeFragment();
         mFragments[1] = TutorialFragment.newInstance(R.drawable.tutorial_swipe, context.getString(R.string.tutorial_swipe));
-        mFragments[2] = new LoginFragment();
+        mFragments[2] = TutorialFragment.newInstance(R.drawable.tutorial_waiter, context.getString(R.string.tutorial_waiter));
+        mFragments[3] = new LoginFragment();
     }
 
     @Override
