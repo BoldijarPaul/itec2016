@@ -25,7 +25,9 @@ public class ScanPresenter extends Presenter<ScanView> {
     }
 
     public void findTableFromQr(String qr) {
-        if (mLoading) {
+        BaseApp.getTableId().set(1);
+        getView().showTable(1);
+       /* if (mLoading) {
             return;
         }
         mLoading = true;
@@ -47,14 +49,17 @@ public class ScanPresenter extends Presenter<ScanView> {
                 mLoading = false;
                 getView().showNetworkError();
             }
-        });
+        });*/
     }
 
     public void findTableFromNfc(String nfc) {
-        if (mLoading) {
+        BaseApp.getTableId().set(1);
+        getView().showTable(1);
+        /*if (mLoading) {
             return;
         }
         mLoading = true;
+
         Call<TableResponse> orderServiceCall = mOrderService.getTable(new NfcBody(nfc));
         orderServiceCall.enqueue(new Callback<TableResponse>() {
             @Override
@@ -73,6 +78,6 @@ public class ScanPresenter extends Presenter<ScanView> {
                 mLoading = false;
                 getView().showNetworkError();
             }
-        });
+        });*/
     }
 }

@@ -18,6 +18,17 @@ public class Product {
     @SerializedName("category_id")
     public int categoryId;
 
+    public Product(String description, int id, String image, int categoryId) {
+        this.description = description;
+        this.id = id;
+        this.image = image;
+        this.categoryId = categoryId;
+    }
+
+    public Product() {
+
+    }
+
     public static Product mock() {
         Product product = new Product();
         product.categoryId = 1;

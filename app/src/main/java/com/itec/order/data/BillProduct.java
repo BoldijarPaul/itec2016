@@ -25,4 +25,14 @@ public class BillProduct {
 
     public String image;
     public String category;
+
+    public BillProduct(int productId, int deliverOrderId, int quantity, float price, String productName, String image, String category) {
+        this.productId = productId;
+        this.deliverOrderId = deliverOrderId;
+        this.quantity = quantity;
+        this.price = price;
+        this.productName = productName;
+        this.image = image;
+        this.category = category;
+    }
 }

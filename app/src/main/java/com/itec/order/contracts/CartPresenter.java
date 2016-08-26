@@ -13,8 +13,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 /**
  * Created by Paul on 5/14/2016.
@@ -33,9 +31,19 @@ public class CartPresenter extends Presenter<CartView> {
         for (CurrentCartProduct cartProduct : products) {
             orders.add(new Order(cartProduct));
         }
-        Call<OrderResponse> orderResponseCall = mOrderService.getProducts(BaseApp.getToken().get(),
-                BaseApp.getTableId().get(),
-                orders);
+        int mockId = (int) (Math.random() * 100);
+        OrderRecord record = new OrderRecord(mockId);
+        List<CurrentCartProduct> currentCartProducts = CurrentCartProduct.listAll(CurrentCartProduct.class);
+        for (CurrentCartProduct currentCartProduct : currentCartProducts) {
+            OrderProductRecord productRecord = new OrderProductRecord(currentCartProduct, mockId);
+            productRecord.save();
+        }
+        record.save();
+
+        BaseApp.getNote().delete();
+        CurrentCartProduct.deleteAll(CurrentCartProduct.class);
+        getView().showOrderSuccessfull();
+        /*
         orderResponseCall.enqueue(new Callback<OrderResponse>() {
             @Override
             public void onResponse(Call<OrderResponse> call, Response<OrderResponse> response) {
@@ -63,6 +71,6 @@ public class CartPresenter extends Presenter<CartView> {
                 getView().showNetworkError();
             }
         });
-
+*/
     }
 }

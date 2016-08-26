@@ -14,4 +14,14 @@ public class Category {
     public String description;
 
     public boolean checked;
+
+    public Category() {
+    }
+
+    public Category(int id, String image, String description, boolean checked) {
+        this.id = id;
+        this.image = image;
+        this.description = description;
+        this.checked = checked;
+    }
 }

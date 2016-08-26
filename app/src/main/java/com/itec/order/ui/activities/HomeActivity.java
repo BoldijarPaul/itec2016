@@ -1,10 +1,5 @@
 package com.itec.order.ui.activities;
 
-import android.content.Intent;
-import android.os.Bundle;
-import android.support.annotation.IdRes;
-import android.support.v4.app.Fragment;
-
 import com.itec.app.R;
 import com.itec.order.data.events.LogoutEvent;
 import com.itec.order.data.service.CachePresenter;
@@ -19,6 +14,11 @@ import com.roughike.bottombar.OnMenuTabClickListener;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.support.annotation.IdRes;
+import android.support.v4.app.Fragment;
 
 import layout.ProfileFragment;
 
@@ -96,9 +96,6 @@ public class HomeActivity extends BaseActivity {
                 }
                 if (menuItemId == R.id.home_profile) {
                     switchFragment(mProfileFragment);
-                }
-                if (menuItemId == R.id.home_pay) {
-                    switchFragment(mPayFragment);
                 }
             }
 
